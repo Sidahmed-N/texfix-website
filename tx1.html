@@ -1,0 +1,1067 @@
+<html lang="en" class="bg-[#000000] scroll-smooth antialiased selection:bg-white/20">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TexFix | Custom Business Software</title>
+    <!-- FAVICON - Using PNG for better quality and size -->
+    <link rel="icon" type="image/png" href="data/txfxlogo.png">
+    <link rel="apple-touch-icon" href="data/txfxlogo.png">
+    <!-- TAILWIND -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- ICONS -->
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@300;400;500;700&amp;display=swap" rel="stylesheet">
+    
+    <!-- CUSTOM STYLES -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'void': '#030303',
+                        'signal': '#3B82F6',
+                        'signal-glow': '#60A5FA',
+                        'zinc': {
+                            850: '#1f1f22',
+                            900: '#18181b',
+                            950: '#09090b',
+                        }
+                    },
+                    fontFamily: {
+                        'display': ['"Space Grotesk"', 'sans-serif'],
+                        'mono': ['"JetBrains Mono"', 'monospace'],
+                    },
+                    backgroundImage: {
+                        'noise': "url('data:image/svg+xml,%3Csvg viewBox=\"0 0 200 200\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cfilter id=\"noiseFilter\"%3E%3CfeTurbulence type=\"fractalNoise\" baseFrequency=\"0.8\" numOctaves=\"3\" stitchTiles=\"stitch\"/%3E%3C/filter%3E%3Crect width=\"100%25\" height=\"100%25\" filter=\"url(%23noiseFilter)\"/%3E%3C/svg%3E')",
+                    },
+                    animation: {
+                        'spin-slow': 'spin 30s linear infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-glow': 'pulseGlow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { opacity: 1, boxShadow: '0 0 20px rgba(59, 130, 246, 0.5)' },
+                            '50%': { opacity: .5, boxShadow: '0 0 10px rgba(59, 130, 246, 0.2)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="loading antialiased selection:bg-white/20">
+    
+    <!-- MOBILE NAVBAR -->
+    <nav id="mobile-navbar" class="fixed top-0 left-0 right-0 z-[100] md:hidden bg-gradient-to-b from-[#030303] via-[#030303]/90 to-transparent backdrop-blur-sm border-b border-white/5">
+        <div class="flex items-center justify-end px-6 py-4">
+            <!-- Hamburger Menu Button -->
+            <button id="hamburger-btn" class="flex flex-col gap-1.5 cursor-pointer p-2 hover:opacity-80 transition-opacity">
+                <span class="hamburger-line w-6 h-0.5 bg-white transition-all duration-300"></span>
+                <span class="hamburger-line w-6 h-0.5 bg-white transition-all duration-300"></span>
+                <span class="hamburger-line w-6 h-0.5 bg-white transition-all duration-300"></span>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden bg-black/60 backdrop-blur-md border-t border-white/5 overflow-hidden max-h-0 transition-all duration-300">
+            <div class="px-6 py-4 space-y-2">
+                <a href="#about" class="block px-4 py-2.5 text-[11px] font-mono uppercase tracking-widest text-zinc-400 hover:text-white hover:bg-white/5 rounded transition-all">About</a>
+                <a href="#services" class="block px-4 py-2.5 text-[11px] font-mono uppercase tracking-widest text-zinc-400 hover:text-white hover:bg-white/5 rounded transition-all">Services</a>
+                <a href="#projects" class="block px-4 py-2.5 text-[11px] font-mono uppercase tracking-widest text-zinc-400 hover:text-white hover:bg-white/5 rounded transition-all">Projects</a>
+                <a href="#process" class="block px-4 py-2.5 text-[11px] font-mono uppercase tracking-widest text-zinc-400 hover:text-white hover:bg-white/5 rounded transition-all">Process</a>
+                <a href="#testimonials" class="block px-4 py-2.5 text-[11px] font-mono uppercase tracking-widest text-zinc-400 hover:text-white hover:bg-white/5 rounded transition-all">Testimonials</a>
+                <a href="#contact" class="block px-4 py-2.5 text-[11px] font-mono uppercase tracking-widest text-signal hover:text-signal-glow hover:bg-signal/5 rounded transition-all font-semibold">Contact</a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Background (component) added from tx2 -->
+    <div class="aura-background-component fixed top-0 w-full h-screen z-0 opacity-40 pointer-events-none" data-alpha-mask="80" style="mask-image: linear-gradient(to bottom, transparent, black 0%, black 80%, transparent); -webkit-mask-image: linear-gradient(to bottom, transparent, black 0%, black 80%, transparent)"><div data-us-project="cqcLtDwfoHqqRPttBbQE" class="absolute top-0 left-0 w-full h-full"></div>
+    <script type="text/javascript">
+      !function(){if(!window.UnicornStudio){window.UnicornStudio={isInitialized:!1};var i=document.createElement("script");i.src="https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v1.4.29/dist/unicornStudio.umd.js",i.onload=function(){window.UnicornStudio.isInitialized||(UnicornStudio.init(),window.UnicornStudio.isInitialized=!0)},(document.head || document.body).appendChild(i)}}();
+    </script></div>
+
+    <!-- OVERLAYS -->
+    <div class="noise"></div>
+    <div class="scanlines"></div>
+    <div class="vignette"></div>
+    
+    <!-- CURSOR -->
+    <div class="cursor-dot hidden md:block"></div>
+    <div class="cursor-ring hidden md:block"></div>
+
+    <!-- PRELOADER -->
+    <div class="loader" id="loader">
+        <div class="flex flex-col items-center gap-4">
+            <div class="font-mono text-signal text-xs tracking-[0.5em] uppercase">Initializing Core</div>
+            <div class="w-48 h-[1px] bg-zinc-800 relative overflow-hidden">
+                <div class="absolute inset-0 bg-signal w-full origin-left animate-[grow_1.5s_ease-in-out]"></div>
+            </div>
+            <div class="font-display font-bold text-6xl text-white tracking-tighter" id="loader-text">000</div>
+        </div>
+    </div>
+
+    <!-- NAV -->
+    <nav class="fixed top-0 w-full z-50 px-6 py-4 flex justify-center items-center bg-gradient-to-b from-[#030303] via-[#030303]/90 to-transparent backdrop-blur-sm">
+
+        <div class="hidden md:flex items-center gap-1 bg-zinc-900/40 backdrop-blur-md p-1 border border-white/5 rounded-none clip-corner">
+            <a href="#about" class="px-5 py-2 text-[11px] font-mono uppercase tracking-widest text-zinc-400 hover:text-white hover:bg-white/5 transition-all">About</a>
+            <a href="#services" class="px-5 py-2 text-[11px] font-mono uppercase tracking-widest text-zinc-400 hover:text-white hover:bg-white/5 transition-all">Services</a>
+            <a href="#projects" class="px-5 py-2 text-[11px] font-mono uppercase tracking-widest text-zinc-400 hover:text-white hover:bg-white/5 transition-all">Projects</a>
+            <a href="#testimonials" class="px-5 py-2 text-[11px] font-mono uppercase tracking-widest text-zinc-400 hover:text-white hover:bg-white/5 transition-all">Testimonials</a>
+            <a href="#contact" class="px-5 py-2 text-[11px] font-mono uppercase tracking-widest text-zinc-400 hover:text-white hover:bg-white/5 transition-all">Contact</a>
+        </div>
+
+        <a href="#contact" class="absolute right-6 hidden md:flex items-center gap-3 px-6 py-2.5 bg-signal text-white font-mono text-[11px] font-bold tracking-widest uppercase hover:bg-signal-glow transition-all clip-corner btn-glitch shadow-[0_0_15px_rgba(59,130,246,0.4)]">
+            <span class="relative z-10">Let's Build Together</span>
+        </a>
+    </nav>
+
+    <main>
+        <!-- HERO SECTION -->
+        <section id="home" class="relative min-h-screen w-full flex flex-col justify-center items-center overflow-hidden pt-20">
+            <!-- Parallax Gradient Background with Animated Colored Blobs -->
+            <div class="absolute inset-0 z-0 pointer-events-none">
+                <div class="absolute inset-0 bg-grid [mask-image:linear-gradient(to_bottom,transparent,black,transparent)]"></div>
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-500/10 rounded-full blur-[100px]"></div>
+                <div class="absolute top-0 right-0 w-[400px] h-[400px] bg-blue-500/10 rounded-full blur-[80px]"></div>
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] hero-gradient opacity-20 rounded-full blur-[100px]"></div>
+            </div>
+
+            <div class="relative z-10 flex flex-col items-center text-center px-4 max-w-6xl mx-auto">
+                
+                <!-- Badge -->
+                <div class="mb-8 opacity-0 animate-[fadeInUp_0.8s_ease-out_1s_forwards]">
+                    <div class="inline-flex items-center gap-3 px-4 py-1.5 border border-zinc-800 bg-black/40 backdrop-blur-sm rounded-full">
+                        <span class="relative flex h-2 w-2">
+                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-signal opacity-75"></span>
+                          <span class="relative inline-flex rounded-full h-2 w-2 bg-signal"></span>
+                        </span>
+                        <span class="font-mono text-[10px] text-zinc-400 uppercase tracking-widest">
+                            Software Developement Agency
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Headline -->
+                <h1 class="font-display font-bold leading-[0.9] tracking-tighter mb-6 mix-blend-screen relative">
+                    <span class="block text-[8vw] md:text-[6vw] bg-clip-text text-transparent bg-gradient-to-b from-white via-white to-zinc-500 animate-[slideUp_1s_cubic-bezier(0.16,1,0.3,1)_0.5s_both]">
+                        CUSTOM  SOFTWARE SOLUTIONS
+                        </span>
+                   
+                </h1>
+
+                <!-- Subheading -->
+                <div class="max-w-2xl mx-auto space-y-8 opacity-0 animate-[fadeIn_1s_ease-out_1.2s_forwards]">
+                    <p class="font-mono text-sm md:text-base text-zinc-400 text-center leading-relaxed">
+                        Scalable Custom Business Software, Web & Mobile Applications.<br>
+                        <span class="text-zinc-500">TexFix builds tailored software solutions designed to streamline your business operations and drive growth.</span>
+                    </p>
+
+                    <div class="flex flex-col md:flex-row items-center justify-center gap-6">
+                        <a href="#projects" class="group relative px-8 py-4 bg-signal text-white clip-corner flex items-center justify-center overflow-hidden btn-glitch shadow-[0_0_20px_rgba(59,130,246,0.3)] hover:shadow-[0_0_30px_rgba(59,130,246,0.5)] transition-all">
+                            <span class="relative z-10 font-mono text-xs font-bold uppercase tracking-[0.2em] flex items-center gap-2">
+                                Show Our Work
+                                <iconify-icon icon="lucide:arrow-right"></iconify-icon>
+                            </span>
+                        </a>
+                        <a href="#contact" class="px-8 py-4 border border-zinc-700 hover:border-white text-white clip-corner transition-all">
+                            <span class="font-mono text-xs font-bold uppercase tracking-[0.2em]">Contact Us</span>
+                        </a>
+                    </div>
+                </div>
+
+               
+        </section>
+
+        <!-- ABOUT SECTION (BENTO GRID REDESIGN) -->
+        <section id="about" class="py-24 border-y border-zinc-900 bg-zinc-950/50 relative">
+            <!-- Aura Background -->
+            <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+                <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-500/5 rounded-full blur-[120px]"></div>
+                <div class="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-purple-500/5 rounded-full blur-[100px]"></div>
+            </div>
+            <div class="max-w-7xl mx-auto px-6 mb-16 relative z-10">
+                
+                <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+                    <div>
+                        <span class="text-signal font-mono text-xs tracking-widest uppercase mb-2 block">/// Philosophy</span>
+                        <h2 class="font-display text-4xl text-white font-medium leading-tight">
+                            Engineered for <span class="text-signal">Growth</span>
+                        </h2>
+                    </div>
+                    <p class="font-mono text-xs text-zinc-400 max-w-sm text-right">
+                        We don't just write code. We build digital infrastructure that scales with your ambition.
+                    </p>
+                </div>
+
+                <!-- BENTO GRID -->
+                <div class="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-4 gap-4 auto-rows-[minmax(180px,auto)]">
+                    
+                    <!-- Item 1: Code Editor (Mockup) - Large Span -->
+                    <div class="bento-card md:col-span-4 lg:col-span-2 md:row-span-2 group relative flex flex-col justify-between overflow-hidden">
+                        <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-zinc-900/50 to-[#050505] -z-10"></div>
+                        
+                        <!-- Header -->
+                        <div class="p-6 pb-0">
+                            <div class="flex items-center gap-2 mb-4">
+                                <iconify-icon icon="lucide:terminal" class="text-signal text-xl"></iconify-icon>
+                                <h3 class="font-display text-white text-lg">Clean Architecture</h3>
+                            </div>
+                            <p class="text-zinc-500 text-xs font-mono mb-4">Production-ready code built for maintainability and scale.</p>
+                        </div>
+
+                        <!-- Code Editor UI -->
+                        <div class="flex-1 bg-[#0a0a0a] border-t border-zinc-800 mt-2 mx-4 mb-0 rounded-t-lg shadow-2xl relative translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+                            <div class="flex items-center gap-1.5 px-3 py-2 border-b border-zinc-800 bg-zinc-900/50">
+                                <div class="w-2.5 h-2.5 rounded-full bg-red-500/20 border border-red-500/50"></div>
+                                <div class="w-2.5 h-2.5 rounded-full bg-yellow-500/20 border border-yellow-500/50"></div>
+                                <div class="w-2.5 h-2.5 rounded-full bg-green-500/20 border border-green-500/50"></div>
+                                <div class="ml-2 text-[10px] text-zinc-500 font-mono">texfix_core.ts</div>
+                            </div>
+                            <div class="p-4 font-mono text-[11px] leading-relaxed text-zinc-400" style="counter-reset: line;">
+                                <div class="code-line"><span class="text-purple-400">import</span> { <span class="text-yellow-200">Scalable</span> } <span class="text-purple-400">from</span> <span class="text-green-400">'@texfix/core'</span>;</div>
+                                <div class="code-line">&nbsp;</div>
+                                <div class="code-line"><span class="text-purple-400">const</span> <span class="text-blue-400">initializeProject</span> = <span class="text-purple-400">async</span> () => {</div>
+                                <div class="code-line">&nbsp;&nbsp;<span class="text-zinc-600">// Optimizing workflow</span></div>
+                                <div class="code-line">&nbsp;&nbsp;<span class="text-purple-400">const</span> <span class="text-blue-400">result</span> = <span class="text-purple-400">await</span> <span class="text-yellow-200">Scalable</span>.<span class="text-blue-300">build</span>({</div>
+                                <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;performance: <span class="text-orange-400">100</span>,</div>
+                                <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;security: <span class="text-orange-400">true</span>,</div>
+                                <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;uptime: <span class="text-green-400">'99.9%'</span></div>
+                                <div class="code-line">&nbsp;&nbsp;});</div>
+                                <div class="code-line">&nbsp;&nbsp;<span class="text-purple-400">return</span> <span class="text-blue-400">result</span>;<span class="typing-cursor text-signal"></span></div>
+                                <div class="code-line">}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 2: Global Reach -->
+                    <div class="bento-card md:col-span-2 lg:col-span-1 p-6 flex flex-col justify-between group">
+                        <div class="w-10 h-10 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-400 group-hover:text-white group-hover:border-zinc-700 transition-colors">
+                            <iconify-icon icon="lucide:globe-2" class="text-xl"></iconify-icon>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-display font-bold text-white mb-1">Global</div>
+                            <p class="text-zinc-500 text-xs font-mono">Remote-first, serving clients worldwide.</p>
+                        </div>
+                        <div class="absolute top-4 right-4 animate-pulse">
+                            <div class="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_10px_rgba(34,197,94,0.5)]"></div>
+                        </div>
+                    </div>
+
+                    <!-- Item 3: Security -->
+                    <div class="bento-card md:col-span-2 lg:col-span-1 p-6 flex flex-col justify-between group">
+                        <div class="w-10 h-10 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-400 group-hover:text-signal group-hover:border-signal/30 transition-colors">
+                            <iconify-icon icon="lucide:shield-check" class="text-xl"></iconify-icon>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-display font-bold text-white mb-1">Secure</div>
+                            <p class="text-zinc-500 text-xs font-mono">Enterprise-grade data protection.</p>
+                        </div>
+                        <!-- Decorative background icon -->
+                        <iconify-icon icon="lucide:lock" class="absolute -bottom-4 -right-4 text-9xl text-white/5 rotate-12 group-hover:rotate-0 transition-transform duration-500"></iconify-icon>
+                    </div>
+
+                    <!-- Item 4: Performance Graph -->
+                    <div class="bento-card md:col-span-3 lg:col-span-1 p-6 flex flex-col gap-4 group">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="font-display text-white text-lg">High Performance</h3>
+                                <p class="text-zinc-500 text-xs font-mono">Optimized for speed.</p>
+                            </div>
+                            <iconify-icon icon="lucide:zap" class="text-yellow-500 text-xl"></iconify-icon>
+                        </div>
+                        <div class="flex-1 flex items-end justify-between gap-1 h-24 pb-2 border-b border-zinc-800">
+                            <div class="w-full bg-zinc-800 rounded-t-sm h-[40%] group-hover:h-[50%] transition-all duration-500 delay-100 relative overflow-hidden"><div class="absolute bottom-0 w-full h-full bg-gradient-to-t from-zinc-700 to-transparent opacity-50"></div></div>
+                            <div class="w-full bg-zinc-800 rounded-t-sm h-[60%] group-hover:h-[75%] transition-all duration-500 delay-75 relative overflow-hidden"><div class="absolute bottom-0 w-full h-full bg-gradient-to-t from-zinc-700 to-transparent opacity-50"></div></div>
+                            <div class="w-full bg-zinc-800 rounded-t-sm h-[30%] group-hover:h-[45%] transition-all duration-500 delay-150 relative overflow-hidden"><div class="absolute bottom-0 w-full h-full bg-gradient-to-t from-zinc-700 to-transparent opacity-50"></div></div>
+                            <div class="w-full bg-signal rounded-t-sm h-[85%] group-hover:h-[95%] transition-all duration-500 shadow-[0_0_15px_rgba(59,130,246,0.3)]"></div>
+                        </div>
+                    </div>
+
+                    <!-- Item 5: Transparent Communication -->
+                    <div class="bento-card md:col-span-3 lg:col-span-1 p-6 flex flex-col justify-center items-center text-center group">
+                        <div class="relative w-16 h-16 mb-4">
+                            <div class="absolute inset-0 rounded-full border border-dashed border-zinc-600 animate-spin-slow"></div>
+                            <div class="absolute inset-2 rounded-full border border-zinc-700 flex items-center justify-center bg-zinc-900">
+                                <iconify-icon icon="lucide:users" class="text-2xl text-white group-hover:scale-110 transition-transform"></iconify-icon>
+                            </div>
+                        </div>
+                        <h3 class="font-display text-white text-md mb-1">Partnership</h3>
+                        <p class="text-zinc-500 text-[10px] font-mono uppercase tracking-widest">Transparent Process</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Tech Stack Marquee (Moved below grid as a footer to the section) -->
+            <div class="py-6 bg-black/20 border-t border-zinc-800 relative overflow-hidden">
+                <div class="marquee-container">
+                    <div class="marquee-content gap-16 px-8">
+                        <div class="flex items-center gap-4 text-zinc-500 font-mono text-xs uppercase tracking-widest hover:text-white transition-colors"><iconify-icon icon="lucide:code-2" class="text-signal"></iconify-icon> ReactJS</div>
+                        <div class="flex items-center gap-4 text-zinc-500 font-mono text-xs uppercase tracking-widest hover:text-white transition-colors"><iconify-icon icon="lucide:server" class="text-signal"></iconify-icon> Node.js</div>
+                        <div class="flex items-center gap-4 text-zinc-500 font-mono text-xs uppercase tracking-widest hover:text-white transition-colors"><iconify-icon icon="lucide:file-code" class="text-signal"></iconify-icon> TypeScript</div>
+                        <div class="flex items-center gap-4 text-zinc-500 font-mono text-xs uppercase tracking-widest hover:text-white transition-colors"><iconify-icon icon="lucide:layers" class="text-signal"></iconify-icon> Next.js</div>
+                        <div class="flex items-center gap-4 text-zinc-500 font-mono text-xs uppercase tracking-widest hover:text-white transition-colors"><iconify-icon icon="lucide:box" class="text-signal"></iconify-icon> Docker</div>
+                        <div class="flex items-center gap-4 text-zinc-500 font-mono text-xs uppercase tracking-widest hover:text-white transition-colors"><iconify-icon icon="lucide:database" class="text-signal"></iconify-icon> PostgreSQL</div>
+                        <div class="flex items-center gap-4 text-zinc-500 font-mono text-xs uppercase tracking-widest hover:text-white transition-colors"><iconify-icon icon="lucide:cloud" class="text-signal"></iconify-icon> AWS</div>
+                        <div class="flex items-center gap-4 text-zinc-500 font-mono text-xs uppercase tracking-widest hover:text-white transition-colors"><iconify-icon icon="lucide:cpu" class="text-signal"></iconify-icon> GraphQL</div>
+                        <!-- Duplicate for loop -->
+                        <div class="flex items-center gap-4 text-zinc-500 font-mono text-xs uppercase tracking-widest hover:text-white transition-colors"><iconify-icon icon="lucide:code-2" class="text-signal"></iconify-icon> ReactJS</div>
+                        <div class="flex items-center gap-4 text-zinc-500 font-mono text-xs uppercase tracking-widest hover:text-white transition-colors"><iconify-icon icon="lucide:server" class="text-signal"></iconify-icon> Node.js</div>
+                        <div class="flex items-center gap-4 text-zinc-500 font-mono text-xs uppercase tracking-widest hover:text-white transition-colors"><iconify-icon icon="lucide:file-code" class="text-signal"></iconify-icon> TypeScript</div>
+                        <div class="flex items-center gap-4 text-zinc-500 font-mono text-xs uppercase tracking-widest hover:text-white transition-colors"><iconify-icon icon="lucide:layers" class="text-signal"></iconify-icon> Next.js</div>
+                        <div class="flex items-center gap-4 text-zinc-500 font-mono text-xs uppercase tracking-widest hover:text-white transition-colors"><iconify-icon icon="lucide:box" class="text-signal"></iconify-icon> Docker</div>
+                        <div class="flex items-center gap-4 text-zinc-500 font-mono text-xs uppercase tracking-widest hover:text-white transition-colors"><iconify-icon icon="lucide:database" class="text-signal"></iconify-icon> PostgreSQL</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CORE SERVICES -->
+        <section id="services" class="py-24 bg-zinc-950 border-t border-zinc-900 relative overflow-hidden">
+             <!-- Aura Background -->
+             <div class="absolute inset-0 z-0 pointer-events-none">
+                <div class="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-[120px]"></div>
+                <div class="absolute bottom-1/3 right-1/4 w-[600px] h-[600px] bg-purple-500/5 rounded-full blur-[100px]"></div>
+             </div>
+             <!-- Background Grid -->
+             <div class="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.03)_1px,transparent_1px)] bg-[size:60px_60px] opacity-20 pointer-events-none"></div>
+
+             <div class="max-w-7xl mx-auto px-6 relative z-10">
+                <h2 class="font-display text-4xl text-white font-medium mb-4 text-center">Our <span class="text-signal">Core Services</span></h2>
+                <p class="font-mono text-sm text-zinc-400 max-w-2xl mx-auto text-center mb-16">
+                    Comprehensive software solutions designed to address your business challenges. From custom development to process automation, we deliver results that drive measurable growth and operational excellence.
+                </p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Service 1: Custom Software Development (Expandable) -->
+                    <div class="glass-card p-8 clip-corner hover:bg-zinc-900/80 transition-all group service-card cursor-pointer custom-dev-toggle" data-custom-dev="toggle">
+                        <div class="w-12 h-12 bg-zinc-900 border border-zinc-800 flex items-center justify-center mb-6 group-hover:border-signal/50 group-hover:text-signal transition-colors text-zinc-400">
+                            <iconify-icon icon="lucide:code" class="text-2xl"></iconify-icon>
+                        </div>
+                        <h3 class="font-display text-lg text-white mb-3">Custom Software Development</h3>
+                        <p class="font-mono text-[11px] text-zinc-500 leading-relaxed">Full-cycle tailored solutions from concept to deployment.</p>
+                        <div class="mt-4 text-signal font-mono text-[10px] tracking-widest flex items-center gap-2">
+                          <span>VIEW DETAILS</span>
+                          <iconify-icon icon="lucide:chevron-down" class="text-sm custom-dev-chevron"></iconify-icon>
+                        </div>
+                    </div>
+
+                    <!-- Service 2: Web & Mobile (Expandable) -->
+                    <div class="glass-card p-8 clip-corner hover:bg-zinc-900/80 transition-all group service-card cursor-pointer mobile-web-toggle" data-mobile-web="toggle">
+                        <div class="w-12 h-12 bg-zinc-900 border border-zinc-800 flex items-center justify-center mb-6 group-hover:border-signal/50 group-hover:text-signal transition-colors text-zinc-400">
+                            <iconify-icon icon="lucide:smartphone" class="text-2xl"></iconify-icon>
+                        </div>
+                        <h3 class="font-display text-lg text-white mb-3">Web & Mobile Applications</h3>
+                        <p class="font-mono text-[11px] text-zinc-500 leading-relaxed">Responsive, enterprise-grade performance for all devices.</p>
+                        <div class="mt-4 text-signal font-mono text-[10px] tracking-widest flex items-center gap-2">
+                          <span>VIEW DETAILS</span>
+                          <iconify-icon icon="lucide:chevron-down" class="text-sm mobile-web-chevron"></iconify-icon>
+                        </div>
+                    </div>
+
+                    <!-- Service 3: Process Automation (Expandable) -->
+                    <div class="glass-card p-8 clip-corner hover:bg-zinc-900/80 transition-all group service-card cursor-pointer automation-toggle" data-automation="toggle">
+                        <div class="w-12 h-12 bg-zinc-900 border border-zinc-800 flex items-center justify-center mb-6 group-hover:border-signal/50 group-hover:text-signal transition-colors text-zinc-400">
+                            <iconify-icon icon="lucide:workflow" class="text-2xl"></iconify-icon>
+                        </div>
+                        <h3 class="font-display text-lg text-white mb-3">Process Automation</h3>
+                        <p class="font-mono text-[11px] text-zinc-500 leading-relaxed">Streamline workflows and integrate disparate systems.</p>
+                        <div class="mt-4 text-signal font-mono text-[10px] tracking-widest flex items-center gap-2">
+                          <span>VIEW DETAILS</span>
+                          <iconify-icon icon="lucide:chevron-down" class="text-sm automation-chevron"></iconify-icon>
+                        </div>
+                    </div>
+
+                    <!-- Service 4: Data Analytics & BI (Expandable) -->
+                    <div class="glass-card p-8 clip-corner hover:bg-zinc-900/80 transition-all group service-card cursor-pointer analytics-toggle" data-analytics="toggle">
+                        <div class="w-12 h-12 bg-zinc-900 border border-zinc-800 flex items-center justify-center mb-6 group-hover:border-signal/50 group-hover:text-signal transition-colors text-zinc-400">
+                            <iconify-icon icon="lucide:bar-chart-2" class="text-2xl"></iconify-icon>
+                        </div>
+                        <h3 class="font-display text-lg text-white mb-3">Data Analytics & BI</h3>
+                        <p class="font-mono text-[11px] text-zinc-500 leading-relaxed">Dashboards and reporting for strategic business insights.</p>
+                        <div class="mt-4 text-signal font-mono text-[10px] tracking-widest flex items-center gap-2">
+                          <span>VIEW DETAILS</span>
+                          <iconify-icon icon="lucide:chevron-down" class="text-sm analytics-chevron"></iconify-icon>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Advanced Services Section (Hidden by Default) -->
+                <div id="automation-details" class="automation-details hidden mt-0 pt-0 overflow-hidden max-h-0 transition-all duration-500">
+                  <!-- Section Header -->
+                  <div class="max-w-3xl mx-auto text-center mb-16 pt-16">
+                    <h2 class="text-3xl md:text-5xl font-display font-semibold text-white tracking-tight mb-6">
+                      Process Automation &amp;
+                      <span class="text-signal">System Integration</span>
+                    </h2>
+                    <p class="text-base md:text-lg text-zinc-400 font-light leading-relaxed">
+                      Automation of workflows and integration of existing systems to reduce manual work and increase efficiency.
+                    </p>
+                  </div>
+
+                  <!-- Cards Grid -->
+                  <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Card 1: Custom Development -->
+                    <div class="group relative rounded-lg bg-zinc-900/40 border border-white/10 overflow-hidden hover:border-signal/40 transition-colors duration-500 flex flex-col clip-corner">
+                      <div class="p-8 relative z-10 flex-1 flex flex-col">
+                        <h3 class="text-2xl font-display font-semibold text-white mb-3 flex items-center gap-3 tracking-tight">
+                          <iconify-icon icon="lucide:code-2" class="text-signal text-2xl"></iconify-icon>
+                          Custom Development
+                        </h3>
+                        <p class="text-zinc-400 font-light mb-8 text-sm leading-relaxed">
+                          Full-cycle development of custom software solutions tailored to specific business needs, from planning to deployment.
+                        </p>
+
+                        <!-- Visualization -->
+                        <div class="mt-auto relative h-[280px] w-full flex flex-col items-center justify-center border border-white/5 rounded-lg bg-black/40 overflow-hidden">
+                          <!-- Grid Floor Effect -->
+                          <div class="absolute inset-0 z-0 opacity-20"
+                            style="background-image: linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px); background-size: 30px 30px;">
+                          </div>
+
+                          <!-- Typographic Display -->
+                          <div class="z-20 flex flex-col items-center justify-center h-full w-full p-6 space-y-4">
+                            <div class="w-full h-px bg-gradient-to-r from-transparent via-signal/30 to-transparent"></div>
+                            <h4 class="font-display text-2xl font-semibold text-white text-center">Scalable. Secure. Custom.</h4>
+                            <div class="flex gap-4 opacity-40">
+                              <div class="h-2 w-24 bg-zinc-700 rounded"></div>
+                              <div class="h-2 w-16 bg-zinc-700 rounded"></div>
+                              <div class="h-2 w-20 bg-zinc-700 rounded"></div>
+                            </div>
+                            <div class="w-full h-px bg-gradient-to-r from-transparent via-signal/30 to-transparent"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Card 2: Data Analytics -->
+                    <div class="group relative rounded-lg bg-zinc-900/40 border border-white/10 overflow-hidden hover:border-signal/40 transition-colors duration-500 flex flex-col clip-corner">
+                      <div class="p-8 relative z-10 h-full flex flex-col">
+                        <h3 class="text-2xl font-display font-semibold text-white mb-3 flex items-center gap-3 tracking-tight">
+                          <iconify-icon icon="lucide:bar-chart-2" class="text-signal text-2xl"></iconify-icon>
+                          Data Analytics
+                        </h3>
+                        <p class="text-zinc-400 font-light mb-8 text-sm leading-relaxed">
+                          Custom dashboards, reporting tools, and analytics that help businesses make better strategic decisions.
+                        </p>
+
+                        <!-- UI Interface Mockup -->
+                        <div class="mt-auto w-full bg-zinc-950/60 rounded-lg border border-white/10 p-5 shadow-2xl relative overflow-hidden group-hover:shadow-signal/10 transition-shadow duration-500">
+                          <!-- Window Header -->
+                          <div class="flex items-center justify-between mb-4 border-b border-white/5 pb-3">
+                            <div class="flex items-center gap-2">
+                              <span class="text-xs font-mono font-semibold text-white tracking-wide">System Status</span>
+                              <span class="px-2 py-1 rounded text-[9px] font-mono font-semibold text-signal bg-signal/10 border border-signal/20">Online</span>
+                            </div>
+                            <div class="flex gap-1.5">
+                              <div class="w-2 h-2 rounded-full bg-zinc-700"></div>
+                              <div class="w-2 h-2 rounded-full bg-zinc-700"></div>
+                            </div>
+                          </div>
+
+                          <!-- Stats List -->
+                          <div class="space-y-2 font-mono text-[11px] relative z-10">
+                            <!-- Row 1 -->
+                            <div class="flex items-center gap-2">
+                              <span class="w-12 text-zinc-500 text-right font-medium">Uptime</span>
+                              <div class="flex-1 h-6 bg-zinc-900 border border-white/5 rounded px-2 flex items-center text-signal">Server_1</div>
+                              <div class="w-8 h-6 bg-zinc-900 border border-white/5 rounded flex items-center justify-center text-zinc-500">→</div>
+                              <div class="w-16 h-6 bg-zinc-900 border border-white/5 rounded px-2 flex items-center text-white">99.9%</div>
+                            </div>
+
+                            <!-- Row 2 -->
+                            <div class="flex items-center gap-2">
+                              <span class="w-12 text-zinc-500 text-right font-medium">Load</span>
+                              <div class="flex-1 h-6 bg-zinc-900 border border-white/5 rounded px-2 flex items-center text-signal">Latency</div>
+                              <div class="w-8 h-6 bg-zinc-900 border border-white/5 rounded flex items-center justify-center text-zinc-500">&lt;</div>
+                              <div class="w-16 h-6 bg-zinc-900 border border-white/5 rounded px-2 flex items-center text-white">20ms</div>
+                            </div>
+
+                            <!-- Nested Group -->
+                            <div class="pl-4 border-l border-zinc-800 mt-3 pt-2 relative">
+                              <div class="flex items-center gap-2 mb-2">
+                                <span class="text-zinc-600 text-[9px] uppercase tracking-wider font-semibold">Result</span>
+                              </div>
+                              <div class="flex items-center gap-2">
+                                <span class="w-12 text-zinc-500 text-right font-medium">Action</span>
+                                <div class="flex-1 h-6 bg-zinc-900 border border-white/5 rounded px-2 flex items-center text-signal">Scale_Up</div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <!-- Gradient Glow -->
+                          <div class="absolute -right-8 -bottom-8 w-32 h-32 bg-signal/5 rounded-full blur-[40px] pointer-events-none group-hover:bg-signal/10 transition-all duration-700"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Custom Development Details (Hidden by Default) -->
+                <div id="custom-dev-details" class="custom-dev-details hidden mt-0 pt-0 overflow-hidden max-h-0 transition-all duration-500">
+                  <div class="pt-16 border-t border-white/10">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                      <!-- Left: Text Content -->
+                      <div class="max-w-xl">
+                        <h2 class="text-3xl md:text-4xl font-display font-semibold text-white tracking-tight mb-6">
+                          Building <span class="text-signal">Enterprise-Grade</span> Solutions
+                        </h2>
+                        <p class="text-base text-zinc-400 font-light leading-relaxed mb-6">
+                          From architecture design to deployment, we build custom software that scales with your business needs and integrates seamlessly with existing systems.
+                        </p>
+                        <p class="text-sm text-zinc-500 font-light leading-relaxed mb-8">
+                          Our development process includes robust testing, security implementation, and comprehensive documentation to ensure long-term maintainability.
+                        </p>
+                        <div class="flex flex-wrap gap-3 mb-12">
+                          <div class="px-4 py-2 border border-signal/30 bg-signal/10 rounded text-xs font-mono text-signal">React/Next.js</div>
+                          <div class="px-4 py-2 border border-signal/30 bg-signal/10 rounded text-xs font-mono text-signal">Node.js</div>
+                          <div class="px-4 py-2 border border-signal/30 bg-signal/10 rounded text-xs font-mono text-signal">TypeScript</div>
+                          <div class="px-4 py-2 border border-signal/30 bg-signal/10 rounded text-xs font-mono text-signal">AWS/Docker</div>
+                        </div>
+                      </div>
+
+                      <!-- Right: Visual Flow -->
+                      <div class="relative">
+                        <div class="space-y-4">
+                          <div class="bg-zinc-900/40 border border-white/10 rounded-lg p-4 hover:border-signal/40 transition-colors">
+                            <div class="flex items-center gap-3 mb-2">
+                              <div class="w-8 h-8 rounded-full bg-signal/20 border border-signal/40 flex items-center justify-center">
+                                <iconify-icon icon="lucide:pencil-line" class="text-signal text-sm"></iconify-icon>
+                              </div>
+                              <span class="font-display font-semibold text-white">Design & Planning</span>
+                            </div>
+                            <p class="text-zinc-500 text-xs ml-11">Architecture design and technical specifications</p>
+                          </div>
+                          <div class="bg-zinc-900/40 border border-white/10 rounded-lg p-4 hover:border-signal/40 transition-colors">
+                            <div class="flex items-center gap-3 mb-2">
+                              <div class="w-8 h-8 rounded-full bg-signal/20 border border-signal/40 flex items-center justify-center">
+                                <iconify-icon icon="lucide:code" class="text-signal text-sm"></iconify-icon>
+                              </div>
+                              <span class="font-display font-semibold text-white">Development</span>
+                            </div>
+                            <p class="text-zinc-500 text-xs ml-11">Clean, scalable code with modern frameworks</p>
+                          </div>
+                          <div class="bg-zinc-900/40 border border-white/10 rounded-lg p-4 hover:border-signal/40 transition-colors">
+                            <div class="flex items-center gap-3 mb-2">
+                              <div class="w-8 h-8 rounded-full bg-signal/20 border border-signal/40 flex items-center justify-center">
+                                <iconify-icon icon="lucide:check-circle" class="text-signal text-sm"></iconify-icon>
+                              </div>
+                              <span class="font-display font-semibold text-white">Testing & Deployment</span>
+                            </div>
+                            <p class="text-zinc-500 text-xs ml-11">Rigorous QA and seamless production launch</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Web & Mobile Details (Hidden by Default) -->
+                <div id="mobile-web-details" class="mobile-web-details hidden mt-0 pt-0 overflow-hidden max-h-0 transition-all duration-500">
+                  <div class="pt-16 border-t border-white/10">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                      <!-- Left: Text Content -->
+                      <div class="max-w-xl">
+                        <h2 class="text-3xl md:text-4xl font-display font-semibold text-white tracking-tight mb-6">
+                          Responsive Design for <span class="text-signal\">All Devices</span>
+                        </h2>
+                        <p class="text-base text-zinc-400 font-light leading-relaxed mb-6">
+                          Web and mobile applications built with responsive design principles, ensuring optimal performance across all screen sizes and devices.
+                        </p>
+                        <p class="text-sm text-zinc-500 font-light leading-relaxed mb-8">
+                          From progressive web apps to native iOS and Android development, we deliver high-performance applications with intuitive user experiences.
+                        </p>
+                        <div class="flex flex-wrap gap-3 mb-12">
+                          <div class="px-4 py-2 border border-signal/30 bg-signal/10 rounded text-xs font-mono text-signal">PWA</div>
+                          <div class="px-4 py-2 border border-signal/30 bg-signal/10 rounded text-xs font-mono text-signal">React Native</div>
+                          <div class="px-4 py-2 border border-signal/30 bg-signal/10 rounded text-xs font-mono text-signal">Flutter</div>
+                          <div class="px-4 py-2 border border-signal/30 bg-signal/10 rounded text-xs font-mono text-signal">Responsive UI</div>
+                        </div>
+                      </div>
+
+                      <!-- Right: Visual Flow -->
+                      <div class="relative">
+                        <div class="flex items-end justify-center gap-6">
+                          <div class="flex flex-col items-center gap-3">
+                            <div class="w-16 h-24 bg-zinc-900/40 border border-white/10 rounded-lg p-2 flex items-center justify-center hover:border-signal/40 transition-colors">
+                              <div class="text-center">
+                                <div class="w-10 h-16 bg-zinc-800 rounded border border-white/5 mx-auto mb-1"></div>
+                                <span class="text-[9px] text-zinc-500 font-mono">Mobile</span>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="flex flex-col items-center gap-3">
+                            <div class="w-24 h-24 bg-zinc-900/40 border border-white/10 rounded-lg p-2 flex items-center justify-center hover:border-signal/40 transition-colors">
+                              <div class="text-center">
+                                <div class="w-16 h-12 bg-zinc-800 rounded border border-white/5 mx-auto mb-1"></div>
+                                <span class="text-[9px] text-zinc-500 font-mono\">Tablet</span>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="flex flex-col items-center gap-3">
+                            <div class="w-20 h-24 bg-zinc-900/40 border border-white/10 rounded-lg p-2 flex items-center justify-center hover:border-signal/40 transition-colors">
+                              <div class="text-center">
+                                <div class="w-14 h-10 bg-zinc-800 rounded border border-white/5 mx-auto mb-1"></div>
+                                <span class="text-[9px] text-zinc-500 font-mono">Desktop</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="mt-6 bg-zinc-900/40 border border-signal/20 rounded-lg p-4">
+                          <div class="flex items-center gap-2 mb-2">
+                            <iconify-icon icon="lucide:smartphone" class="text-signal"></iconify-icon>
+                            <span class="text-sm font-display font-semibold text-white\">100% Responsive</span>
+                          </div>
+                          <p class="text-xs text-zinc-500\">Optimized performance and UX across all breakpoints</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Data Analytics Details (Hidden by Default) -->
+                <div id="analytics-details" class="analytics-details hidden mt-0 pt-0 overflow-hidden max-h-0 transition-all duration-500">
+                  <div class="pt-16 border-t border-white/10">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                      <!-- Left: Text Content -->
+                      <div class="max-w-xl">
+                        <h2 class="text-3xl md:text-4xl font-display font-semibold text-white tracking-tight mb-6">
+                          Data-Driven <span class="text-signal">Decision Making</span>
+                        </h2>
+                        <p class="text-base text-zinc-400 font-light leading-relaxed mb-6">
+                          Custom dashboards and analytics platforms that transform raw data into actionable insights. Real-time reporting for strategic decision-making.
+                        </p>
+                        <p class="text-sm text-zinc-500 font-light leading-relaxed mb-8">
+                          Advanced visualizations, predictive analytics, and comprehensive BI tools designed specifically for your business metrics and KPIs.
+                        </p>
+                        <div class="flex flex-wrap gap-3 mb-12">
+                          <div class="px-4 py-2 border border-signal/30 bg-signal/10 rounded text-xs font-mono text-signal">Dashboards</div>
+                          <div class="px-4 py-2 border border-signal/30 bg-signal/10 rounded text-xs font-mono text-signal">Real-time Data</div>
+                          <div class="px-4 py-2 border border-signal/30 bg-signal/10 rounded text-xs font-mono text-signal">Analytics API</div>
+                          <div class="px-4 py-2 border border-signal/30 bg-signal/10 rounded text-xs font-mono text-signal">ML Models</div>
+                        </div>
+                      </div>
+
+                      <!-- Right: Visual Flow -->
+                      <div class="relative">
+                        <div class="space-y-3">
+                          <div class="grid grid-cols-2 gap-3 mb-4">
+                            <div class="bg-zinc-900/40 border border-white/10 rounded-lg p-3 hover:border-signal/40 transition-colors">
+                              <div class="text-xs text-zinc-500 font-mono mb-2">Total Revenue</div>
+                              <div class="text-2xl font-display font-bold text-signal">$2.4M</div>
+                              <div class="text-[10px] text-zinc-600 mt-1">↑ 24% vs last month</div>
+                            </div>
+                            <div class="bg-zinc-900/40 border border-white/10 rounded-lg p-3 hover:border-signal/40 transition-colors">
+                              <div class="text-xs text-zinc-500 font-mono mb-2">Active Users</div>
+                              <div class="text-2xl font-display font-bold text-signal">12.5K</div>
+                              <div class="text-[10px] text-zinc-600 mt-1">↑ 18% vs last month</div>
+                            </div>
+                          </div>
+                          <div class="bg-zinc-900/40 border border-white/10 rounded-lg p-3 h-32 hover:border-signal/40 transition-colors flex items-end justify-between gap-1">
+                            <div class="flex-1 flex flex-col items-center gap-1">
+                              <div class="w-full h-12 bg-signal/20 rounded border border-signal/40"></div>
+                              <span class="text-[8px] text-zinc-600\">Jan</span>
+                            </div>
+                            <div class="flex-1 flex flex-col items-center gap-1">
+                              <div class="w-full h-16 bg-signal/20 rounded border border-signal/40"></div>
+                              <span class="text-[8px] text-zinc-600">Feb</span>
+                            </div>
+                            <div class="flex-1 flex flex-col items-center gap-1">
+                              <div class="w-full h-20 bg-signal rounded border border-signal/40"></div>
+                              <span class="text-[8px] text-zinc-600">Mar</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+             </div>
+        </section>
+
+        <!-- FEATURED SOLUTIONS -->
+        <section id="projects" class="py-32 relative bg-black/80">
+            <!-- Aura Background -->
+            <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+                <div class="absolute top-1/3 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-500/5 rounded-full blur-[120px]"></div>
+                <div class="absolute bottom-1/4 right-1/3 w-[500px] h-[500px] bg-purple-500/5 rounded-full blur-[100px]"></div>
+            </div>
+            <div class="max-w-7xl mx-auto px-6 relative z-10">
+                <div class="mb-20">
+                    <span class="text-signal font-mono text-xs tracking-widest uppercase mb-2 block">/// Portfolio</span>
+                    <h2 class="font-display text-5xl md:text-7xl text-white font-medium tracking-tight">
+                        Featured Solutions<br><span class="text-signal">&amp; Projects</span>
+                    </h2>
+                    <p class="font-mono text-sm text-zinc-400 max-w-2xl mt-6 leading-relaxed">
+                        A selection of transformative projects that demonstrate our expertise in building enterprise-grade solutions. Each project showcases our commitment to scalability, performance, and user-centric design.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Project 1 -->
+                    <div class="glass-card group lg:col-span-2 relative overflow-hidden clip-corner project-card cursor-pointer transition-all hover:border-signal/50" data-project="1">
+                        <div class="absolute inset-0 bg-[url('data/project1.jpg')] bg-cover bg-center opacity-40 mix-blend-luminosity transition-transform duration-700 group-hover:scale-105"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent"></div>
+                        <div class="relative p-8 h-full flex flex-col justify-end min-h-[400px]">
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-2 py-1 border border-zinc-700 bg-black/50 text-[10px] font-mono uppercase text-zinc-400">automation</span>
+                                <span class="px-2 py-1 border border-zinc-700 bg-black/50 text-[10px] font-mono uppercase text-zinc-400">analytics</span>
+                                <span class="px-2 py-1 border border-zinc-700 bg-black/50 text-[10px] font-mono uppercase text-zinc-400">workflow</span>
+                            </div>
+                            <h3 class="font-display text-3xl text-white mb-2">Inventory & Operations Management</h3>
+                            <p class="font-mono text-xs text-zinc-400 max-w-md">Custom business platform with automated workflow management and real-time reporting.</p>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="glass-card group relative overflow-hidden clip-corner project-card cursor-pointer transition-all hover:border-signal/50" data-project="2">
+                         <div class="absolute inset-0 bg-[url('data/project2.jpg')] bg-cover bg-center opacity-40 mix-blend-luminosity transition-transform duration-700 group-hover:scale-105"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent"></div>
+                        <div class="relative p-8 h-full flex flex-col justify-end min-h-[400px]">
+                             <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-2 py-1 border border-zinc-700 bg-black/50 text-[10px] font-mono uppercase text-zinc-400">CRM</span>
+                                <span class="px-2 py-1 border border-zinc-700 bg-black/50 text-[10px] font-mono uppercase text-zinc-400">Insights</span>
+                            </div>
+                            <h3 class="font-display text-2xl text-white mb-2">OptiFlow Pro</h3>
+                            <p class="font-mono text-xs text-zinc-400">Client Management & Communication Platform with automated workflows.</p>
+                        </div>
+                    </div>
+
+                    <!-- Project 3 -->
+                    <div class="glass-card group relative overflow-hidden clip-corner project-card cursor-pointer transition-all hover:border-signal/50" data-project="3">
+                         <div class="absolute inset-0 bg-[url('data/project3.jpg')] bg-cover bg-center opacity-40 mix-blend-luminosity transition-transform duration-700 group-hover:scale-105"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent"></div>
+                        <div class="relative p-8 h-full flex flex-col justify-end min-h-[400px]">
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-2 py-1 border border-zinc-700 bg-black/50 text-[10px] font-mono uppercase text-zinc-400">BI</span>
+                                <span class="px-2 py-1 border border-zinc-700 bg-black/50 text-[10px] font-mono uppercase text-zinc-400">Dashboards</span>
+                            </div>
+                            <h3 class="font-display text-2xl text-white mb-2">ClientHub X</h3>
+                            <p class="font-mono text-xs text-zinc-400">Business Intelligence & Custom Reporting with real-time dashboards.</p>
+                        </div>
+                    </div>
+
+                    <!-- Project 4 -->
+                    <div class="glass-card group lg:col-span-2 relative overflow-hidden clip-corner project-card cursor-pointer transition-all hover:border-signal/50" data-project="4">
+                         <div class="absolute inset-0 bg-[url('data/project4.jpg')] bg-cover bg-center opacity-40 mix-blend-luminosity transition-transform duration-700 group-hover:scale-105"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent"></div>
+                        <div class="relative p-8 h-full flex flex-col justify-end min-h-[400px]">
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-2 py-1 border border-zinc-700 bg-black/50 text-[10px] font-mono uppercase text-zinc-400">Charts</span>
+                                <span class="px-2 py-1 border border-zinc-700 bg-black/50 text-[10px] font-mono uppercase text-zinc-400">API</span>
+                            </div>
+                            <h3 class="font-display text-3xl text-white mb-2">DataInsight Suite</h3>
+                            <p class="font-mono text-xs text-zinc-400 max-w-md">Advanced analytics and visualization platform for enterprise data.</p>
+                        </div>
+                    </div>
+
+                     <!-- Project 5 -->
+                     <div class="glass-card group relative overflow-hidden clip-corner project-card md:col-span-2 lg:col-span-3 cursor-pointer transition-all hover:border-signal/50" data-project="5">
+                        <div class="absolute inset-0 bg-[url('data/project5.jpg')] bg-cover bg-center opacity-40 mix-blend-luminosity transition-transform duration-700 group-hover:scale-105"></div>
+                       <div class="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent"></div>
+                       <div class="relative p-8 h-full flex flex-col justify-end min-h-[300px]">
+                           <div class="flex flex-wrap gap-2 mb-4">
+                               <span class="px-2 py-1 border border-zinc-700 bg-black/50 text-[10px] font-mono uppercase text-zinc-400">E-Commerce</span>
+                               <span class="px-2 py-1 border border-zinc-700 bg-black/50 text-[10px] font-mono uppercase text-zinc-400">Scalable</span>
+                           </div>
+                           <h3 class="font-display text-3xl text-white mb-2">TradeVault Commerce</h3>
+                           <p class="font-mono text-xs text-zinc-400 max-w-xl">E-Commerce & Custom Business Web App with payment and inventory control.</p>
+                       </div>
+                   </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROCESS -->
+        <section id="process" class="py-24 relative bg-black/60 overflow-hidden">
+            <!-- Aura Background -->
+            <div class="absolute inset-0 z-0 pointer-events-none">
+                <div class="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-[120px]"></div>
+                <div class="absolute top-1/2 right-1/4 w-[600px] h-[600px] bg-purple-500/5 rounded-full blur-[100px]"></div>
+            </div>
+            <div class="max-w-6xl mx-auto px-6 relative z-10">
+                <div class="mb-16">
+                    <span class="text-signal font-mono text-xs tracking-widest uppercase mb-2 block">/// Methodology</span>
+                    <h2 class="font-display text-4xl text-white font-medium">Our <span class="text-signal">Development Process</span></h2>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 z-10 relative items-stretch">
+                  <!-- STEP 1: Discovery & Planning -->
+                  <div class="group p-6 sm:p-8 hover:border-signal/40 transition-colors duration-500 flex flex-col bg-zinc-900/40 h-full border border-white/10 rounded-lg relative">
+                    <span class="absolute -top-4 left-6 inline-flex items-center px-4 py-1.5 rounded-full border border-white/10 bg-zinc-800 text-xs sm:text-sm text-zinc-300 font-medium tracking-wide shadow-xl">STEP 1</span>
+
+                    <!-- Visual -->
+                    <div class="relative h-48 sm:h-56 rounded-lg bg-black/40 border border-white/5 overflow-hidden flex items-center justify-center mb-6">
+                      <div class="absolute inset-0 p-6 flex flex-col items-center justify-center">
+                        <div class="w-full max-w-[200px] space-y-3">
+                          <!-- Chat Bubble 1 -->
+                          <div class="flex gap-3 items-end">
+                            <div class="w-8 h-8 rounded-full bg-zinc-800 border border-white/10 flex-shrink-0"></div>
+                            <div class="bg-zinc-800 w-full border border-white/10 rounded-lg pt-3 pr-3 pb-3 pl-3">
+                              <div class="h-2 w-16 bg-zinc-600 rounded mb-2 opacity-50"></div>
+                              <div class="h-2 w-24 bg-zinc-600 rounded opacity-30"></div>
+                            </div>
+                          </div>
+                          <!-- Chat Bubble 2 -->
+                          <div class="flex gap-3 items-end flex-row-reverse">
+                            <div class="w-8 h-8 rounded-full bg-signal/20 border border-signal/30 flex-shrink-0"></div>
+                            <div class="bg-signal/10 p-3 rounded-lg rounded-br-none w-full border border-signal/20">
+                              <div class="h-2 w-20 bg-signal/40 rounded mb-2"></div>
+                              <div class="h-2 w-12 bg-signal/30 rounded opacity-70"></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Copy -->
+                    <h3 class="text-2xl sm:text-3xl text-white font-display font-semibold tracking-tight">Discovery & Planning</h3>
+                    <p class="mt-3 text-sm text-zinc-400 font-light leading-relaxed">
+                      We analyze requirements, define architecture, and design technical specifications.
+                    </p>
+                  </div>
+
+                  <!-- STEP 2: Development & Testing -->
+                  <div class="group p-6 sm:p-8 bg-zinc-900/40 border border-white/10 hover:border-signal/40 transition-colors duration-500 rounded-lg relative h-full flex flex-col">
+                    <span class="absolute -top-4 left-6 inline-flex items-center px-4 py-1.5 rounded-full border border-white/10 bg-zinc-800 text-xs sm:text-sm text-zinc-300 font-medium tracking-wide shadow-xl">STEP 2</span>
+
+                    <!-- Visual -->
+                    <div class="relative h-48 sm:h-56 rounded-lg bg-black/40 border border-white/5 overflow-hidden mb-6">
+                      <div class="absolute inset-4 bg-zinc-900 border border-white/10 rounded-lg shadow-2xl flex flex-col">
+                        <div class="h-8 border-b border-white/5 flex items-center px-3 gap-1.5">
+                          <div class="w-2.5 h-2.5 rounded-full bg-red-500/20 border border-red-500/50"></div>
+                          <div class="w-2.5 h-2.5 rounded-full bg-yellow-500/20 border border-yellow-500/50"></div>
+                          <div class="w-2.5 h-2.5 rounded-full bg-green-500/20 border border-green-500/50"></div>
+                        </div>
+                        <div class="flex-1 p-3 grid grid-cols-3 gap-2">
+                          <div class="col-span-2 space-y-2">
+                            <div class="h-16 bg-zinc-800/50 rounded border border-white/5 w-full"></div>
+                            <div class="h-8 bg-zinc-800/50 rounded border border-white/5 w-full"></div>
+                          </div>
+                          <div class="col-span-1 h-full bg-zinc-800/50 rounded border border-white/5"></div>
+                        </div>
+                        <!-- Status Badge -->
+                        <div class="absolute bottom-4 right-4 flex gap-2 group-hover:-translate-y-1 transition-transform duration-500">
+                          <div class="bg-signal/80 text-white text-[10px] font-mono font-bold px-2 py-1 rounded shadow-lg">
+                            Verified
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Copy -->
+                    <h3 class="text-2xl sm:text-3xl text-white font-display font-semibold tracking-tight">Development & Testing</h3>
+                    <p class="mt-3 text-sm text-zinc-400 font-light leading-relaxed">
+                      We build the solution, maintain communication, and perform quality testing.
+                    </p>
+                  </div>
+
+                  <!-- STEP 3: Deployment & Support -->
+                  <div class="group p-6 sm:p-8 bg-zinc-900/40 border border-white/10 hover:border-signal/40 transition-colors duration-500 rounded-lg relative h-full flex flex-col">
+                    <span class="absolute -top-4 left-6 inline-flex items-center px-4 py-1.5 rounded-full border border-white/10 bg-zinc-800 text-xs sm:text-sm text-zinc-300 font-medium tracking-wide shadow-xl">STEP 3</span>
+
+                    <!-- Visual -->
+                    <div class="relative h-48 sm:h-56 rounded-lg bg-black/40 border border-white/5 overflow-hidden flex items-center justify-center mb-6">
+                      <div class="relative w-full h-full flex items-center justify-center">
+                        <div class="absolute inset-0 bg-signal/5 blur-[60px]"></div>
+                        <div class="relative bg-zinc-900 border border-white/10 rounded-lg p-4 shadow-2xl min-w-[180px] text-center">
+                          <div class="w-12 h-12 rounded-full bg-signal/10 border border-signal/20 flex items-center justify-center mx-auto mb-3">
+                            <iconify-icon icon="lucide:rocket" class="text-signal w-6 h-6 text-xl"></iconify-icon>
+                          </div>
+                          <div class="text-white font-display font-semibold text-sm mb-1">Status: Live</div>
+                          <div class="text-zinc-500 text-[10px] font-mono">Uptime: 99.9%</div>
+                          <div class="mt-3 h-1 w-full bg-zinc-800 rounded-full overflow-hidden">
+                            <div class="h-full w-full bg-signal animate-pulse"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Copy -->
+                    <h3 class="text-2xl sm:text-3xl text-white font-display font-semibold tracking-tight">Deployment & Support</h3>
+                    <p class="mt-3 text-sm text-zinc-400 font-light leading-relaxed">
+                      We deploy to production, train staff, and provide ongoing maintenance.
+                    </p>
+                  </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TESTIMONIALS -->
+        <section id="testimonials" class="py-24 bg-black border-y border-zinc-900 relative overflow-hidden">
+            <!-- Aura Background -->
+            <div class="absolute inset-0 z-0 pointer-events-none">
+                <div class="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-[120px]"></div>
+                <div class="absolute bottom-1/3 right-1/4 w-[600px] h-[600px] bg-purple-500/5 rounded-full blur-[100px]"></div>
+            </div>
+            <div class="max-w-7xl mx-auto px-6 relative z-10">
+                <h2 class="font-display text-4xl text-white font-medium mb-4 text-center">Kind Words from <span class="text-signal">Satisfied Clients</span></h2>
+                <p class="font-mono text-sm text-zinc-400 max-w-2xl mx-auto text-center mb-16">
+                    Real feedback from companies that have partnered with us. Our clients trust TexFix to deliver innovative solutions that exceed expectations and drive their business forward.
+                </p>
+                
+                <div class="grid md:grid-cols-3 gap-6">
+                    <!-- Review 1 -->
+                    <div class="glass-card p-8 rounded-lg relative overflow-hidden group">
+                        <iconify-icon icon="lucide:quote" class="text-4xl text-zinc-800 absolute top-4 right-4"></iconify-icon>
+                        <p class="font-display text-lg text-zinc-300 mb-6 relative z-10">"TexFix transformed our manual workflow into a seamless digital ecosystem. The efficiency gains were immediate."</p>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-zinc-800 rounded-full"></div>
+                            <div>
+                                <div class="text-white font-bold text-sm">Sarah Jenkins</div>
+                                <div class="text-zinc-500 text-xs font-mono">COO, Logistics Co.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review 2 -->
+                    <div class="glass-card p-8 rounded-lg relative overflow-hidden group border-signal/20">
+                        <iconify-icon icon="lucide:quote" class="text-4xl text-zinc-800 absolute top-4 right-4"></iconify-icon>
+                        <p class="font-display text-lg text-zinc-300 mb-6 relative z-10">"The best development partner we've worked with. Transparent communication and code that actually scales."</p>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-zinc-800 rounded-full"></div>
+                            <div>
+                                <div class="text-white font-bold text-sm">Michael Chen</div>
+                                <div class="text-zinc-500 text-xs font-mono">CTO, FinTech Startup</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review 3 -->
+                    <div class="glass-card p-8 rounded-lg relative overflow-hidden group">
+                        <iconify-icon icon="lucide:quote" class="text-4xl text-zinc-800 absolute top-4 right-4"></iconify-icon>
+                        <p class="font-display text-lg text-zinc-300 mb-6 relative z-10">"OptiFlow Pro revolutionized how we handle client data. The ROI was evident within the first quarter."</p>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-zinc-800 rounded-full"></div>
+                            <div>
+                                <div class="text-white font-bold text-sm">Elena Rodriguez</div>
+                                <div class="text-zinc-500 text-xs font-mono">Director, Sales Corp</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECT MODAL -->
+        <div id="project-modal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-[200] flex items-center justify-center p-4 overflow-y-auto">
+            <div class="bg-black/40 backdrop-blur-xl border border-white/10 rounded-lg clip-corner max-w-2xl w-full my-auto relative overflow-hidden">
+                <!-- Close Button -->
+                <button id="modal-close" class="absolute top-4 right-4 z-10 text-white hover:text-signal transition-colors p-2">
+                    <iconify-icon icon="lucide:x" class="text-2xl"></iconify-icon>
+                </button>
+
+                <!-- Modal Content -->
+                <div class="relative z-10 p-6 sm:p-8">
+                    <!-- Background Image with Overlay -->
+                    <div class="absolute top-0 left-0 right-0 h-48 bg-cover bg-center opacity-20 blur-sm" id="modal-image"></div>
+                    
+                    <!-- Title -->
+                    <h2 data-modal-title class="text-3xl sm:text-4xl font-display font-bold text-white mb-6 relative z-20 pt-16">Project Title</h2>
+                    
+                    <!-- Details -->
+                    <div class="space-y-6 relative z-20">
+                        <!-- Description -->
+                        <div>
+                            <h3 class="text-sm font-mono uppercase tracking-widest text-signal mb-3">Overview</h3>
+                            <p data-modal-description class="text-zinc-300 font-light leading-relaxed">
+                                Project description goes here.
+                            </p>
+                        </div>
+
+                        <!-- Features -->
+                        <div>
+                            <h3 class="text-sm font-mono uppercase tracking-widest text-signal mb-3">Key Features</h3>
+                            <ul data-modal-features class="grid grid-cols-1 sm:grid-cols-2 gap-3 list-none">
+                                <li class="flex items-start gap-3">
+                                    <iconify-icon icon="lucide:check" class="text-signal flex-shrink-0 mt-1"></iconify-icon>
+                                    <span>Feature one</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Tech Stack -->
+                        <div>
+                            <h3 class="text-sm font-mono uppercase tracking-widest text-signal mb-3">Technology</h3>
+                            <div data-modal-tech class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-signal/10 border border-signal/30 rounded text-signal text-sm">Tech</span>
+                            </div>
+                        </div>
+
+                        <!-- Results -->
+                        <div>
+                            <h3 class="text-sm font-mono uppercase tracking-widest text-signal mb-3">Results</h3>
+                            <p data-modal-results class="text-zinc-300 font-light leading-relaxed">
+                                Results and impact of the project.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTACT / FINAL CTA -->
+        <section id="contact" class="min-h-[80vh] flex flex-col items-center justify-center relative overflow-hidden bg-[#030303]">
+            <!-- Aura Background -->
+            <div class="absolute inset-0 z-0 pointer-events-none">
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-blue-500/5 rounded-full blur-[120px]"></div>
+            </div>
+            <div class="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.05)_1px,transparent_1px)] bg-[size:40px_40px] opacity-30 pointer-events-none"></div>
+            
+            <div class="relative z-10 max-w-4xl px-6 text-center">
+                <h2 class="font-display text-[8vw] md:text-[5vw] font-bold text-white leading-tight mb-8">
+                    Ready to transform<br>
+                    <span class="text-transparent text-stroke-signal">your business?</span>
+                </h2>
+                
+                <p class="font-mono text-zinc-400 text-sm md:text-base max-w-lg mx-auto mb-12">
+                    Let TexFix build the solution you need. Secure, scalable, and tailored to your goals.
+                </p>
+
+                <a href="mailto:contact@texfix.com" class="group relative inline-flex items-center justify-center px-10 py-5 bg-signal hover:bg-white text-white hover:text-black transition-colors duration-300 clip-corner btn-glitch">
+                    <span class="font-mono text-sm font-bold uppercase tracking-[0.2em] flex items-center gap-3">
+                        Get in Touch
+                        <iconify-icon icon="lucide:mail" class="text-lg"></iconify-icon>
+                    </span>
+                    <div class="absolute inset-0 border-2 border-white/20 animate-pulse-fast pointer-events-none"></div>
+                </a>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="py-8 border-t border-zinc-900 bg-black">
+            <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="font-mono text-xs text-zinc-500">
+                    Copyright © 2024 TexFix. All rights reserved.
+                </div>
+                <div class="flex items-center gap-6">
+                    <a href="https://www.instagram.com/texfix.agency/" target="_blank" rel="noopener noreferrer" class="text-zinc-500 hover:text-signal transition-colors"><iconify-icon icon="lucide:instagram"></iconify-icon></a>
+                    <a href="https://www.tiktok.com/@texfixstdio?lang=fr" target="_blank" rel="noopener noreferrer" class="text-zinc-500 hover:text-signal transition-colors"><iconify-icon icon="ri:tiktok-fill"></iconify-icon></a>
+                    <a href="https://www.facebook.com/profile.php?id=61585389652103&locale=fr_FR" target="_blank" rel="noopener noreferrer" class="text-zinc-500 hover:text-signal transition-colors"><iconify-icon icon="lucide:facebook"></iconify-icon></a>
+                    <a href="mailto:contact@texfix.com" class="text-zinc-500 hover:text-signal transition-colors font-mono text-xs">contact@texfix.com</a>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <!-- EXTERNAL SCRIPTS -->
+    <script src="script.js"></script>
+</body>
+</html>
